@@ -78,5 +78,22 @@ function playRound(playerChoice, computerChoice) {
 }
 
 // Show the player the results of the current round
+function showRoundWinner(winner) {
+  switch (winner) {
+    case 'player':
+      console.log('You win!');
+      break;
+    case 'computer':
+      console.log('Computer wins.');
+      break;
+    case 'tie':
+      console.log('Tie.');
+      break;
+    default:
+      console.log('Something went wrong...');
+      break;
+  }
+}
+
 // Continue play until five rounds have elapsed
 // Declare a final winner based on all rounds played
