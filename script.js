@@ -21,7 +21,59 @@ function getComputerChoice() {
 }
 
 // Get the player's choice
+
 // Compare the two choices to see who won
+function playRound(playerChoice, computerChoice) {
+  if (computerChoice === 'rock') {
+    switch (playerChoice) {
+      case 'rock':
+        return 'tie';
+        break;
+      case 'paper':
+        return 'player';
+        break;
+      case 'scissors':
+        return 'computer';
+        break;
+      default:
+        return null;
+        break;
+    }
+  } else if (computerChoice === 'paper') {
+    switch (playerChoice) {
+      case 'rock':
+        return 'computer';
+        break;
+      case 'paper':
+        return 'tie';
+        break;
+      case 'scissors':
+        return 'player';
+        break;
+      default:
+        return null;
+        break;
+    }
+  } else if (computerChoice === 'scissors') {
+    switch (playerChoice) {
+      case 'rock':
+        return 'player';
+        break;
+      case 'paper':
+        return 'computer';
+        break;
+      case 'scissors':
+        return 'tie';
+        break;
+      default:
+        return null;
+        break;
+    }
+  } else {
+    return null;
+  }
+}
+
 // Show the player the results of the current round
 // Continue play until five rounds have elapsed
 // Declare a final winner based on all rounds played
