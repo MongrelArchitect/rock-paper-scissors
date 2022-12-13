@@ -21,6 +21,9 @@ function getComputerChoice() {
 }
 
 // Get the player's choice
+function getPlayerChoice() {
+  return prompt('Choose rock, paper or scissors: ').toLowerCase();
+}
 
 // Compare the two choices to see who won
 function playRound(playerChoice, computerChoice) {
