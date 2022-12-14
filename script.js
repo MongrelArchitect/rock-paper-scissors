@@ -1,6 +1,5 @@
 // A simple script for playing rock-paper-scissors against the computer
 
-// * PSEUDOCODE *
 // Generate a random choice for the computer player
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
@@ -81,13 +80,13 @@ function playRound(playerChoice, computerChoice) {
 function showRoundWinner(winner) {
   switch (winner) {
     case 'player':
-      console.log('You win!');
+      console.log('You win this round!');
       break;
     case 'computer':
-      console.log('Computer wins.');
+      console.log('Computer wins this round.');
       break;
     case 'tie':
-      console.log('Tie.');
+      console.log('Tie round.');
       break;
     default:
       console.log('Something went wrong...');
@@ -96,4 +95,36 @@ function showRoundWinner(winner) {
 }
 
 // Continue play until five rounds have elapsed
-// Declare a final winner based on all rounds played
+function game() {
+  let compWins = 0;
+  let playWins = 0;
+
+  for (let i = 0; i < 5; i += 1) {
+    const playerChoice = getPlayerChoice();
+    const compChoice = getComputerChoice();
+    const winner = playRound(playerChoice, compChoice);
+    switch (winner) {
+      case 'player':
+        playWins += 1;
+        break;
+      case 'computer':
+        compWins += 1;
+        break;
+      default:
+        break;
+    }
+    showRoundWinner(winner);
+  }
+
+  // Declare a final winner based on all rounds played
+  if (compWins > playWins) {
+    console.log('Sorry, computer won. Try again!');
+  } else if (compWins < playWins) {
+    console.log('You win the game! Horray!');
+  } else {
+    console.log('Tie game. Give it another shot!');
+  }
+  console.log(`Player: ${playWins} wins | Computer: ${compWins} wins`);
+}
+
+game();
