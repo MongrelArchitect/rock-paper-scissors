@@ -72,19 +72,28 @@ function playRound(playerChoice, computerChoice) {
 }
 
 // Show the player the results of the current round
-function showRoundWinner(winner) {
+function showRoundWinner(winner, playerChoice, computerChoice) {
+  const roundResult = document.querySelector('#round-result');
+  const roundWinner = document.querySelector('#round-winner');
+
   switch (winner) {
     case 'player':
-      console.log('You win this round!');
+      roundResult.textContent = 
+        `${playerChoice} BEATS ${computerChoice}`.toUpperCase();
+      roundWinner.textContent = 'YOU WIN THIS ROUND!'
       break;
     case 'computer':
-      console.log('Computer wins this round.');
+      roundResult.textContent = 
+        `${computerChoice} BEATS ${playerChoice}`.toUpperCase();
+      roundWinner.textContent = 'COMPUTER WINS THIS ROUND'
       break;
     case 'tie':
-      console.log('Tie round.');
+      roundResult.textContent = 
+        `${computerChoice} VS. ${playerChoice}: TIE`.toUpperCase();
+      roundWinner.textContent = 'NOBODY WINS THIS ROUND'
       break;
     default:
-      console.log('Something went wrong...');
+      roundResult.textContent = 'ERROR: SOMETHING WENT WRONG';
       break;
   }
 }
@@ -94,7 +103,10 @@ function buttonListeners() {
   const buttons = document.querySelectorAll('button');
   buttons.forEach(button => {
     button.addEventListener('click', () => {
-      showRoundWinner(playRound(button.id, getComputerChoice()));
+      const computerChoice = getComputerChoice();
+      const playerChoice = button.id;
+      const winner = playRound(playerChoice, computerChoice);
+      showRoundWinner(winner, playerChoice, computerChoice);
     });
   });
 }
