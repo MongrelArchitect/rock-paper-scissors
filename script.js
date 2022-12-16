@@ -93,38 +93,3 @@ function showRoundWinner(winner) {
       break;
   }
 }
-
-// Continue play until five rounds have elapsed
-function game() {
-  let compWins = 0;
-  let playWins = 0;
-
-  for (let i = 0; i < 5; i += 1) {
-    const playerChoice = getPlayerChoice();
-    const compChoice = getComputerChoice();
-    const winner = playRound(playerChoice, compChoice);
-    switch (winner) {
-      case 'player':
-        playWins += 1;
-        break;
-      case 'computer':
-        compWins += 1;
-        break;
-      default:
-        break;
-    }
-    showRoundWinner(winner);
-  }
-
-  // Declare a final winner based on all rounds played
-  if (compWins > playWins) {
-    console.log('Sorry, computer won. Try again!');
-  } else if (compWins < playWins) {
-    console.log('You win the game! Horray!');
-  } else {
-    console.log('Tie game. Give it another shot!');
-  }
-  console.log(`Player: ${playWins} wins | Computer: ${compWins} wins`);
-}
-
-game();
