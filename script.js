@@ -19,11 +19,6 @@ function getComputerChoice() {
   } 
 }
 
-// Get the player's choice
-function getPlayerChoice() {
-  return prompt('Choose rock, paper or scissors: ').toLowerCase();
-}
-
 // Compare the two choices to see who won
 function playRound(playerChoice, computerChoice) {
   if (computerChoice === 'rock') {
@@ -93,3 +88,15 @@ function showRoundWinner(winner) {
       break;
   }
 }
+
+// Each button plays a round with the appropriate choice
+function buttonListeners() {
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      showRoundWinner(playRound(button.id, getComputerChoice()));
+    });
+  });
+}
+
+buttonListeners();
