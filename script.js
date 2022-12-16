@@ -111,9 +111,14 @@ function playGame() {
   let playerScore = 0;
   let computerScore = 0;
 
+  const gameResult = document.querySelector('#game-result'); 
+  const resetMessage = document.querySelector('#reset-message');
+
   const buttons = document.querySelectorAll('button');
   buttons.forEach(button => {
     button.addEventListener('click', () => {
+      gameResult.textContent = 'FIRST TO FIVE';
+      resetMessage.textContent = 'WINS THE GAME';
       const computerChoice = getComputerChoice();
       const playerChoice = button.id;
       const winner = playRound(playerChoice, computerChoice);
@@ -129,6 +134,16 @@ function playGame() {
       }
       showRoundWinner(winner, playerChoice, computerChoice);
       showScores(playerScore, computerScore);
+      if (playerScore === 5 || computerScore === 5) {
+        resetMessage.textContent = 'CHOOSE AGAIN TO START OVER';
+        if (playerScore > computerScore) {
+          gameResult.textContent  = 'YOU WIN THE GAME!'
+        } else {
+          gameResult.textContent  = 'COMPUTER WINS THE GAME'
+        }
+        playerScore = 0;
+        computerScore = 0;
+      }
     });
   });
 }
