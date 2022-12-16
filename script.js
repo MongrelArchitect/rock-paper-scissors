@@ -98,17 +98,39 @@ function showRoundWinner(winner, playerChoice, computerChoice) {
   }
 }
 
-// Each button plays a round with the appropriate choice
-function buttonListeners() {
+// Show the current scores for each player
+function showScores(playerScore, computerScore) {
+  const playerScoreDisplay = document.querySelector('#player-score');
+  const computerScoreDisplay = document.querySelector('#computer-score');
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
+}
+
+// Each button plays a round, resets game once someone gets five points
+function playGame() {
+  let playerScore = 0;
+  let computerScore = 0;
+
   const buttons = document.querySelectorAll('button');
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       const computerChoice = getComputerChoice();
       const playerChoice = button.id;
       const winner = playRound(playerChoice, computerChoice);
+      switch (winner) {
+        case 'player':
+          playerScore += 1;
+          break;
+        case 'computer':
+          computerScore += 1;
+          break;
+        default:
+          break;
+      }
       showRoundWinner(winner, playerChoice, computerChoice);
+      showScores(playerScore, computerScore);
     });
   });
 }
 
-buttonListeners();
+playGame();
